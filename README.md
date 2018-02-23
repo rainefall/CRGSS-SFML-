@@ -10,5 +10,5 @@ Change the top line to `export LIBRARY_PATH=/path/to/crsfml/voidcsfml`
 Edit `run.sh` and change the bottom line to `crystal [main file].cr`.
 
 ## Requirements
-Crystal
+Crystal,
 CrSFML
