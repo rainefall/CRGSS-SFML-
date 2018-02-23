@@ -4,13 +4,11 @@ module CRGSS
 		getter :x
 		getter :y
 		getter :z
-		
 		getter :angle
-		
 		getter :ox
 		getter :oy
-
-		getter :spr
+		getter :src_rect
+		getter :spr  # Don't mess with this one
 		
 		include CRGSS::Drawable
 
@@ -21,6 +19,7 @@ module CRGSS
 			@ox=0
 			@oy=0
 			@angle=0
+			@src_rect = Rect.new(0,0,0,0)
 			
 			@spr = SF::Sprite.new
 			CRGSS.resources << self
@@ -28,10 +27,20 @@ module CRGSS
 		
 		def bitmap=(bitmap)
 			@spr.texture = bitmap.bmp
+			@src_rect = bitmap.rect
 		end
 		
 		def src_rect=(rect)
-			@spr.texture_rect = rect
+			return if rect==@src_rect
+			@spr.texture_rect = SF::Rect.new(rect.x,rect.y,rect.width,rect.height)
+		end
+
+		def width
+			return @src_rect.width
+		end
+
+		def height
+			return @src_rect.height
 		end
 		
 		def x=(x)
@@ -66,6 +75,18 @@ module CRGSS
 			@oy = pos.y
 			@spr.origin = pos
 		end
+
+		def ox=(o)
+			return if o==@ox
+			@ox = o
+			@spr.origin(SF.vector2(o,@oy))
+		end
+
+		def oy=(o)
+			return if o==@oy
+			@oy = o
+			@spr.origin(SF.vector2(@ox,o))
+		end
 		
 		def draw(window)
 			window.draw(@spr)
@@ -75,6 +96,16 @@ module CRGSS
 			return if angle==@angle
 			@angle=angle
 			@spr.rotation = angle
+		end
+
+		def dispose
+			return if disposed?
+			@spr.finalize
+			@spr = nil
+		end
+
+		def disposed?
+			return true if @spr = nil
 		end
 	end
 end
