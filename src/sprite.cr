@@ -100,15 +100,5 @@ module CRGSS
 			@angle=angle.to_f
 			@spr.rotation = angle
 		end
-
-		def dispose
-			return if disposed?
-			@spr.finalize
-			@spr = nil
-		end
-
-		def disposed?
-			@spr.nilable?
-		end
 	end
 end

@@ -21,14 +21,5 @@ module CRGSS
 		def rect
 			CRGSS::Rect.new(0, 0, @bmp.size.x, @bmp.size.y)
 		end
-		
-		def dispose
-			return if disposed?
-			@bmp = ""
-		end
-
-		def disposed?
-			return true if @bmp = ""
-		end
 	end
 end
