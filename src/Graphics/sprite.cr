@@ -10,6 +10,9 @@ module CRGSS
 		getter src_rect : CRGSS::Rect
 		getter spr : SF::Sprite  # Don't mess with this one
 		getter bitmap : CRGSS::Bitmap
+		getter render_state : SF::RenderStates
+		getter shader
+		getter blend_mode
 		
 		include CRGSS::Drawable
 
@@ -24,6 +27,7 @@ module CRGSS
 			@bitmap = uninitialized CRGSS::Bitmap
 			
 			@spr = SF::Sprite.new
+			@render_state = SF::RenderStates.new
 			CRGSS.resources << self
 		end
 		
@@ -92,7 +96,7 @@ module CRGSS
 		end
 		
 		def draw(window)
-			window.draw(@spr)
+			window.draw(@spr, @render_state)
 		end
 		
 		def angle=(angle)
