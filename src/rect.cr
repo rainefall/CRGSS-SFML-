@@ -7,6 +7,7 @@ module CRGSS
         property height
 
         def initialize(x,y,w,h)
+            @x=0;@y=0;@width=0;@height=0;
             @x = x
             @y = y
             @width = w

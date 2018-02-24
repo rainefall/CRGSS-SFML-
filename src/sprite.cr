@@ -1,14 +1,15 @@
 module CRGSS	
 	class Sprite
 
-		getter :x
-		getter :y
-		getter :z
-		getter :angle
-		getter :ox
-		getter :oy
-		getter :src_rect
-		getter :spr  # Don't mess with this one
+		getter x
+		getter y
+		getter z
+		getter angle : Float64
+		getter ox
+		getter oy
+		getter src_rect : CRGSS::Rect
+		getter spr : SF::Sprite  # Don't mess with this one
+		getter bitmap : CRGSS::Bitmap
 		
 		include CRGSS::Drawable
 
@@ -18,14 +19,16 @@ module CRGSS
 			@z=0
 			@ox=0
 			@oy=0
-			@angle=0
-			@src_rect = Rect.new(0,0,0,0)
+			@angle=0.0
+			@src_rect = CRGSS::Rect.new(0,0,0,0)
+			@bitmap = uninitialized CRGSS::Bitmap
 			
 			@spr = SF::Sprite.new
 			CRGSS.resources << self
 		end
 		
 		def bitmap=(bitmap)
+			@bitmap = bitmap
 			@spr.texture = bitmap.bmp
 			@src_rect = bitmap.rect
 		end
@@ -94,7 +97,7 @@ module CRGSS
 		
 		def angle=(angle)
 			return if angle==@angle
-			@angle=angle
+			@angle=angle.to_f
 			@spr.rotation = angle
 		end
 
@@ -105,7 +108,7 @@ module CRGSS
 		end
 
 		def disposed?
-			return true if @spr = nil
+			@spr.nilable?
 		end
 	end
 end
