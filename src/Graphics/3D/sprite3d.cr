@@ -62,4 +62,8 @@ class Sprite3D
 			@model[i].position = SF.vector2(@x,@y-i*@view_angle)
 		end
 	end
+
+	def dispose
+		@model.size.times { |i| @model[i].dispose }
+	end
 end

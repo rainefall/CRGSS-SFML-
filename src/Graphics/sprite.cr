@@ -13,6 +13,8 @@ module CRGSS
 		getter render_state : SF::RenderStates
 		getter shader
 		getter blend_mode
+
+		property disposed
 		
 		include CRGSS::Drawable
 
@@ -28,6 +30,7 @@ module CRGSS
 			
 			@spr = SF::Sprite.new
 			@render_state = SF::RenderStates.new
+			@disposed = false
 			CRGSS.resources << self
 		end
 		
@@ -103,6 +106,13 @@ module CRGSS
 			return if angle==@angle
 			@angle=angle.to_f
 			@spr.rotation = angle
+		end
+
+		def dispose
+			return if @disposed
+			@spr.finalize
+			@bitmap.dispose
+			@disposed = true
 		end
 	end
 end
