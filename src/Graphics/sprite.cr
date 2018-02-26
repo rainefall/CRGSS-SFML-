@@ -31,7 +31,7 @@ module CRGSS
 			@spr = SF::Sprite.new
 			@render_state = SF::RenderStates.new
 			@disposed = false
-			CRGSS.resources << self
+			super()
 		end
 		
 		def bitmap=(bitmap)

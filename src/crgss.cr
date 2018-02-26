@@ -11,7 +11,6 @@ module CRGSS
 		
 		# initialize
 		def initialize
-			puts "HELLO THERE THIS IS DEFINITELY WORKING"
 			CRGSS.resources << self
 		end
 		
