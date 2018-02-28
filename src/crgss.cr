@@ -14,8 +14,6 @@ module CRGSS
 			CRGSS.resources << self
 		end
 		
-		
-		
 		def draw(window)
 			raise "Can't draw this kind of object"
 		end

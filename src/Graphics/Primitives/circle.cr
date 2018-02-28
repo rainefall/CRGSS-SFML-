@@ -44,7 +44,7 @@ class Circle
         z.to_i
         return if z==@z
         @z=z
-        CRGSS.resources.sort_by &.z
+        CRGSS.resources.sort_by! &.z
     end
 
     def draw(window)

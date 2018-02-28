@@ -28,6 +28,7 @@ class Sprite3D
 			@model[i].bitmap = sheet
 			@model[i].src_rect = CRGSS::Rect.new(i*sheet.height,0,sheet.height,sheet.height)
 			@model[i].position = SF.vector2(@x,@y-i*@view_angle)
+			@model[i].z = z+i
   			@model[i].origin = SF.vector2(@ox,@oy)
 		end
 	end
