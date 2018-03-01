@@ -15,6 +15,10 @@ module CRGSS
                 SF::Mouse.set_position(SF.vector2(SF::Mouse.get_position(Graphics.window).x,y),Graphics.window)
             end
 
+            def set_position(x,y)
+                SF::Mouse.set_position(SF.vector2(x,y),Graphics.window)
+            end
+
             def y
                 SF::Mouse.get_position(Graphics.window).y
             end

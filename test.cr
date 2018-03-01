@@ -17,21 +17,40 @@ sprite.y = 200
 # Set the view angle (the number of pixels higher each sprite is)
 sprite.view_angle = 2
 
+# Create a new 3D Sprite (No viewports yet)
+sprite2 = Sprite3D.new
+# Give that 3D sprite a model
+sprite2.model = "floreno_title.png"
+# Set the sprite position
+sprite2.x = 320
+sprite2.y = 200
+# Set the view angle (the number of pixels higher each sprite is)
+sprite2.view_angle = 2
+
 # Creates a translucent blue rectangle
 rect = Rectangle.new(640,400)
 rect.fill_color = Color.new(23,71,87,200)
 # Sets the Z to 7 (between the island and the seabed on the "model")
 rect.z = 7
 
+angle = 0
+
 # Game loop
 loop do 
     # Update the window
     Graphics.update
-    # Add 0.1 to the island model
-    sprite.angle += 0.1
 
-    sprite.x = Input::Mouse.x
-    sprite.y = Input::Mouse.y
+    angle += (Input::Mouse.x-320)/10
+    sprite.x = (320 + Math.lengthdirx(200,angle+128)).to_i32
+    sprite.y = (200 + Math.lengthdiry(200,angle+128)).to_i32
+    sprite.angle = angle
+
+    sprite2.x = (320 + Math.lengthdirx(300,angle)).to_i32
+    sprite2.y = (200 + Math.lengthdiry(300,angle)).to_i32
+    sprite2.angle = angle+128
+    
+    Input::Mouse.set_position(320,200)
+
     # Exit if the window is closed
     break if !Graphics.window.open?
 end
