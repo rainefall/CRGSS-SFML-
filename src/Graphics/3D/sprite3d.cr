@@ -37,7 +37,7 @@ class Sprite3D
 		return if x==@x
 		@x = x
 		@model.size.times do |i|
-			@model[i].position = SF.vector2(@x,@y)
+			@model[i].position = SF.vector2(@x,@y-i*@view_angle)
 		end
 	end		
 	
@@ -45,7 +45,7 @@ class Sprite3D
 		return if y==@y
 		@y = y
 		@model.size.times do |i|
-			@model[i].position = SF.vector2(@x,@y-i)
+			@model[i].position = SF.vector2(@x,@y-i*@view_angle)
 		end
 	end
 	

@@ -29,6 +29,9 @@ loop do
     Graphics.update
     # Add 0.1 to the island model
     sprite.angle += 0.1
+
+    sprite.x = Input::Mouse.x
+    sprite.y = Input::Mouse.y
     # Exit if the window is closed
     break if !Graphics.window.open?
 end
