@@ -10,6 +10,7 @@ end
 
 module CRGSS
     module Input
+        # Grab the keys from the SFML Keyboard module
         Util.extract SF::Keyboard::Key
     end
 end
