@@ -25,10 +25,16 @@ module CRGSS
         end
 
         def self.finalize
-            bgm_player.finalize
-            bgs_player.finalize
-            se_player.finalize
-            me_player.finalize
+            self.bgm_player.finalize
+            self.bgs_player.finalize
+            self.se_player.finalize
+            self.me_player.finalize
+        end
+
+        def self.update
+            if self.bgm_player.playing_offset > self.bgm_loopstart+self.bgm_looplength
+                self.bgm_player.playing_offset -= self.bgm_looplength
+            end
         end
     end
 end

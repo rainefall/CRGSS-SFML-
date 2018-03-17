@@ -27,11 +27,14 @@ module CRGSS
 	
 	# Update game
 	def self.update
+
 		# check all the window's events that were triggered since the last iteration of the loop
 		while event = Graphics.window.poll_event
 			# "close requested" event: we close the window
 		    if event.is_a? SF::Event::Closed
 				Graphics.window.close
+				Audio.bgm_stop if Audio.bgm_playing?
+				Audio.finalize
 			end
 		end
 	end
