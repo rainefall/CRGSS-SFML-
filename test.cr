@@ -35,10 +35,14 @@ rect.z = 7
 
 angle = 0
 
+Audio.bgm_play("aharderchallenge.ogg",loopstart: 1502606, looplength: 4006955)
+
 # Game loop
 loop do 
     # Update the window
     Graphics.update
+    # Update Audio engine
+	Audio.update
 
     angle += (Input::Mouse.x-320)/10
     sprite.x = (320 + Math.lengthdirx(200,angle+128)).to_i32
@@ -50,6 +54,10 @@ loop do
     sprite2.angle = angle+128
     
     Input::Mouse.set_position(320,200)
+
+    if Input.pressed?(Input::A)
+        Audio.bgm_player.playing_offset = SF.seconds(110)
+    end
 
     # Exit if the window is closed
     break if !Graphics.window.open?
